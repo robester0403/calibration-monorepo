@@ -3,7 +3,8 @@ const cors = require("cors"),
   mongoose = require("mongoose"),
   morgan = require("morgan"),
   cookieParser = require("cookie-parser"),
-  bodyParser = require("body-parser");
+  bodyParser = require("body-parser"),
+  projectsRoute = require("./routes/projects");
 
 const app = express();
 
@@ -12,7 +13,6 @@ require("dotenv").config();
 mongoose
   .connect(process.env.ATLAS_URI, {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
   }) //is there better way to display this console log?
   .then(() =>
@@ -28,6 +28,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
+
+app.use("/api/projects", projectsRoute);
 
 // listen for requests
 const PORT = process.env.PORT || 8080;
