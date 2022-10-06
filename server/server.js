@@ -28,11 +28,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
-app.use("/api/", () => console.log("API route hit"));
+// app.use("/api/", () => console.log("API route hit"));
 app.use("/api/projects", projectsRoute);
 
 // listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8079;
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
