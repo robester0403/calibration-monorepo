@@ -4,7 +4,7 @@ const cors = require("cors"),
   morgan = require("morgan"),
   cookieParser = require("cookie-parser"),
   bodyParser = require("body-parser"),
-  projectsRoute = require("./routes/projects");
+  projectsRoute = require("./routes/projects-routes");
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
-
+app.use("/api/", () => console.log("API route hit"));
 app.use("/api/projects", projectsRoute);
 
 // listen for requests
