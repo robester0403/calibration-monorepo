@@ -4,7 +4,8 @@ const cors = require("cors"),
   morgan = require("morgan"),
   cookieParser = require("cookie-parser"),
   bodyParser = require("body-parser"),
-  projectsRoute = require("./routes/projects-routes");
+  projectsRoute = require("./routes/projects-routes"),
+  petRoute = require("./routes/pet-routes");
 
 const app = express();
 
@@ -14,7 +15,7 @@ mongoose
   .connect(process.env.ATLAS_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  }) //is there better way to display this console log?
+  })
   .then(() =>
     console.log("MongoDB database connection established successfully")
   )
@@ -28,7 +29,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
-// app.use("/api/", () => console.log("API route hit"));
+
+app.use("/api/pet", petRoute);
 app.use("/api/projects", projectsRoute);
 
 // listen for requests

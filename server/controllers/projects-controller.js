@@ -1,4 +1,3 @@
-const uuid4 = require("uuid4");
 const Project = require("../models/Project");
 // have to make an error class handling middleware
 
@@ -10,7 +9,6 @@ const getAllProjects = async (_, res, next) => {
 };
 
 const createProject = async (req, res, next) => {
-  const id = uuid4();
   const { name, description, techStackTags } = req.body;
 
   // need an id generator here
